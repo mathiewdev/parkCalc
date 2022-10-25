@@ -1,12 +1,6 @@
 /// <reference types="cypress" />
 
-describe ('Edge Case Tests', () => {
-
-    beforeEach(() => {
-        cy.visit('https://www.shino.de/parkcalc/')
-    })
-
-    /*
+/*
         - unacceptable input should throw error, not time and cost computation
             - letters in date and time fields
                 - manual entry
@@ -19,7 +13,17 @@ describe ('Edge Case Tests', () => {
                 -
         - leave before entry date should throw error
         - entry and leave fields are exactly the same should ____
-        - 
+        - proper date in one field and text in the other
+        - improper date proper time field
+        - improper time proper date field
     */
+
+describe ('Unacceptable input data', () => {
+
+    beforeEach(() => {
+        cy.visit('https://www.shino.de/parkcalc/')
+    })
+
+    it('')
 
 })

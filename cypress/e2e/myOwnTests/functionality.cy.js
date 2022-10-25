@@ -94,9 +94,9 @@ describe ('Functionality Tests', () => {
         //fails with 'have value' since '12:00' is also in field
         //delete existing text?
 
-        cy.get('[id=StartingDate]')
+        cy.get('[id=StartingTime]')
             .clear().invoke('val').should('eq', '')
-        cy.get('[id=StartingDate]')
+        cy.get('[id=StartingTime]')
             .type('1:00').invoke('val').should('eq', '1:00')
 
     })
@@ -139,9 +139,9 @@ describe ('Functionality Tests', () => {
         //doesn't delete current text
         //fails with 'have value' since '12:00' is also in field
         //delete existing text?
-        cy.get('[id=LeavingDate]')
+        cy.get('[id=LeavingTime]')
             .clear().invoke('val').should('eq', '')
-        cy.get('[id=LeavingDate]')
+        cy.get('[id=LeavingTime]')
             .type('1:00').invoke('val').should('eq', '1:00')
 
     })
