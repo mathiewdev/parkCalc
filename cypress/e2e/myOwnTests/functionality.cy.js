@@ -75,11 +75,12 @@ describe ('Functionality Tests', () => {
 
     })
 
-    it('clicked entry calendar icon and confirmed field population with selected date', () => {
+    it.only('clicked entry calendar icon and confirmed field population with selected date', () => {
         //click calendar icon and produce required popup
         //select date from required calendar popup
         //populated date field with calendar selection
-        cy.get('a').first()
+        cy.get('a').first().click()
+        cy.get('form[name=Calendar]')
         //this isn't good practice (brittle test) but I couldn't find another way to seperate the two 'a' elements
             //.click()
 
@@ -134,7 +135,7 @@ describe ('Functionality Tests', () => {
 
     })
 
-    it.only('typed into return time field and confirmed value', () => {
+    it('typed into return time field and confirmed value', () => {
         //type into entry time field
         //doesn't delete current text
         //fails with 'have value' since '12:00' is also in field

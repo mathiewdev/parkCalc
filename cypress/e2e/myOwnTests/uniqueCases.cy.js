@@ -18,6 +18,14 @@
         - improper time proper date field
     */
 
+ describe('edge cases', () =>{
+    
+
+ })       
+
+
+
+
 describe ('Unacceptable input data', () => {
 
     beforeEach(() => {
@@ -26,6 +34,55 @@ describe ('Unacceptable input data', () => {
 
     it('didnt remove default MM/DD/YYYY from both date fields', () => {
         cy.get('[id=StartingDate]')
+            .type('02/11/2000')
+        cy.get('[id=StartingTime]')
+            .clear()
+            .type('1:00')
+        cy.get('[name=StartingTimeAMPM][value=AM]')
+            .check()    
+        cy.get('[id=LeavingDate]')
+            .type('02/11/2000')
+        cy.get('[id=LeavingTime]')
+            .clear()
+            .type('1:30')
+        cy.get('[name=LeavingTimeAMPM][value=AM]')
+            .check()
+        cy.get('[type = submit]')
+            .click()
+        //fails to get because it doesn't exist, ie test fails
+        cy.get('td[class=SubHead]>b')
+            .should('contain', 'ERROR!')
+
+    })
+
+    it('didnt remove default MM/DD/YYYY from entry date field', () => {
+        cy.get('[id=StartingDate]')
+            
+            .type('02/11/2000')
+        cy.get('[id=StartingTime]')
+            .clear()
+            .type('1:00')
+        cy.get('[name=StartingTimeAMPM][value=AM]')
+            .check()    
+        cy.get('[id=LeavingDate]')
+            .clear()
+            .type('02/11/2000')
+        cy.get('[id=LeavingTime]')
+            .clear()
+            .type('1:30')
+        cy.get('[name=LeavingTimeAMPM][value=AM]')
+            .check()
+        cy.get('[type = submit]')
+            .click()
+        //fails to get because it doesn't exist, ie test fails
+        cy.get('td[class=SubHead]>b')
+            .should('contain', 'ERROR!')
+
+    })
+
+    it('didnt remove default MM/DD/YYYY from return date field', () => {
+        cy.get('[id=StartingDate]')
+            .clear()
             .type('02/11/2000')
         cy.get('[id=StartingTime]')
             .clear()
@@ -71,12 +128,63 @@ describe ('Unacceptable input data', () => {
 
     })
 
+    it('letters in entry field', () => {
+        cy.get('[id=StartingDate]')
+            .clear()
+            .type('aaaaaaaa')
+        cy.get('[id=StartingTime]')
+            .clear()
+            .type('1:00')
+        cy.get('[name=StartingTimeAMPM][value=AM]')
+            .check()    
+        cy.get('[id=LeavingDate]')
+            .clear()
+            .type('02/11/2000')
+        cy.get('[id=LeavingTime]')
+            .clear()
+            .type('1:30')
+        cy.get('[name=LeavingTimeAMPM][value=AM]')
+            .check()
+        cy.get('[type = submit]')
+            .click()
+        //fails to get because it doesn't exist, ie test fails
+        cy.get('td[class=SubHead]>b')
+            .should('contain', 'ERROR!')
+
+    })
+
+    it('letters in return field', () => {
+        //passes, but error says it's because leaving date is before starting
+        cy.get('[id=StartingDate]')
+            .clear()
+            .type('02/11/2000')
+        cy.get('[id=StartingTime]')
+            .clear()
+            .type('1:00')
+        cy.get('[name=StartingTimeAMPM][value=AM]')
+            .check()    
+        cy.get('[id=LeavingDate]')
+            .clear()
+            .type('aaaaaaaa')
+        cy.get('[id=LeavingTime]')
+            .clear()
+            .type('1:30')
+        cy.get('[name=LeavingTimeAMPM][value=AM]')
+            .check()
+        cy.get('[type = submit]')
+            .click()
+        //fails to get because it doesn't exist, ie test fails
+        cy.get('td[class=SubHead]>b')
+            .should('contain', 'ERROR!')
+
+    })
+
 })
 
 
 
 
-describe.only('Improper format', () => {
+describe('Improper format', () => {
     
     beforeEach(() => {
         cy.visit('https://www.shino.de/parkcalc/')
